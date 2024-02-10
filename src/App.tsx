@@ -7,7 +7,6 @@ import ScrollToTopWrapper from './Components/ScrollToTopWrapper';
 
 function App() {
   return (
-    
     <div className ="app ">
     <Header/>
     <BelowHeader></BelowHeader>
