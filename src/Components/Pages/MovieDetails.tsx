@@ -159,7 +159,7 @@ export const MovieDetail = () => {
       <div>
         <div className="w-9/12">
           <Cast credits={credit}></Cast>
-          <RenderSuggestions apiPath="movie/popular"  title="Popular"></RenderSuggestions>
+          <RenderSuggestions apiPath="movie/popular"></RenderSuggestions>
           <RenderReviews reviews={reviews} id={params.id}></RenderReviews>
         </div>
 

@@ -6,44 +6,35 @@ import { CiShare2 } from "react-icons/ci";
 
 
 interface Movie{
-    title: string
+    title: string;
 }
-interface Review {
+
+interface Reviews{
+    results: Results[];
     id: string;
-    author_details:AurhorDetailsArr[];
-    avatar_path: string;
-    author: string;
-    content:string;
-    updated_at: string
-    results:ResultsArr[];
 }
-interface ResultsArr{
-    avatar_path: string;
-    author_details: string
-}
-interface AurhorDetailsArr{
-    rating: string;
+interface Results{
     author: string;
-    author_details: string;
+    author_details: AuthorDetails;
     content: string;
+    created_at: string;
+    updated_at: string;
 }
-
-
+interface AuthorDetails{
+    avatar_path:string;
+    name: string;
+    rating: string;
+}
 
 export function DetailReview() {
-    const [reviews, setReviews] = useState<Review>({
+    const [reviews, setReviews] = useState<Reviews>({
         id:"",
-        author_details:[],
-        avatar_path: "",
-        author: "",
-        content:"",
-        updated_at: "",
         results:[]
     });
 
 
     const [movie, setMovie] = useState<Movie>({
-        title:""
+        title:"",
     });
     const params=useParams();
     const [revLen, setRevLen]=useState(0);
@@ -107,9 +98,9 @@ export function DetailReview() {
                 <RenderAddYourRating></RenderAddYourRating>
                 <div>
                     {reviews.results && reviews.results.length ? 
-                    reviews.results.map((review,index)=>(
+                    reviews.results.map((x,index)=>(
                         <div className="p-4" key={index}>
-                        <ReviewCard key={index} review={review}></ReviewCard>
+                        <ReviewCard key={index} rev={x}></ReviewCard>
                         </div>
                     ))
                     
@@ -126,7 +117,6 @@ export function DetailReview() {
         </div>
     )
 }
-
 
 function RenderAddYourRating(){
     return(
@@ -150,42 +140,33 @@ function RenderAddYourRating(){
     )
 }
 
-interface ReviewCardType{
-    avatar_path:string;
-    author: string;
-    author_details: AuthorDetailsType;
-    content:string;
-    updated_at: string;
-}
-interface AuthorDetailsType{
-    rating: string;
-}
 
-function ReviewCard({review}:{review:ReviewCardType}){
+
+function ReviewCard({rev}:{rev:Results}){
     // console.log(review);
     return(
         <div className="rounded p-4 border-solid border-2 border-gray-400">
             <div className="flex justify-between pt-2 pb-4">
                 <div className="flex">
-                    <img src={review.avatar_path}></img>
-                    <div className="text-lg font-semibold">{review.author}</div>
+                    <img src={rev.author_details.avatar_path}></img>
+                    <div className="text-lg font-semibold">{rev.author}</div>
                 </div>
                 <div className="flex">
                 <div className="pt-0.5 px-2 pb-4">
                     <FaStar style={{color:'red'}}/>
                 </div>
-                    {review.author_details.rating}/10
+                    {rev.author_details.rating}/10
                 </div>
             </div>
             <div className="pb-4 text-gray-600">
-            {review.content}
+            {rev.content}
             </div>
             <div className="flex justify-between">
                 <div>
 
                 </div>
                 <div className="text-gray-400 flex text-sm pt-3">
-                    Last Updated- {review.updated_at.slice(0,10)}
+                    Last Updated- {rev.updated_at.slice(0,10)}
                     <div className="pt-1 pl-3"><CiShare2 /></div>
 
                 </div>

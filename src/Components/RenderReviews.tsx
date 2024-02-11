@@ -12,7 +12,7 @@ export function RenderReviews({reviews,id}){
             
             {reviews.results && reviews.results.length ? 
             reviews.results.slice(0,3).map((review,index)=>(
-                <div className="p-4">
+                <div className="p-4" key={index}>
                 <ReviewCard review={review} id={id}></ReviewCard>
                 </div>
             ))
