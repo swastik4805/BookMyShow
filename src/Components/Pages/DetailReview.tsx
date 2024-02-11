@@ -46,27 +46,67 @@ export function DetailReview(){
         fetchMovie();
     },[params.id])
     console.log(revLen);
+
+
+
     return(
-        <div>
-            <div className="text-4xl font-bold text-center">
-                RATINGS
+        <div className="md:flex">
+            <div className="md:w-1/12">
+            
             </div>
-            <div className="text-center">
-                {movie.title}
-            </div>
-            <div className="text-center text-red-500 font-semibold">
-                User reviews ({revLen})
-            </div>
-            <div>
-                {reviews.results && reviews.results.length ? 
-                reviews.results.map((review,index)=>(
-                    <div className="p-4">
-                    <ReviewCard review={review}></ReviewCard>
-                    </div>
-                ))
+
+            <div className="md:w-8/12">
+                <div className="text-4xl font-bold text-center">
+                    RATINGS
+                </div>
+                <div className="text-center">
+                    {movie.title}
+                </div>
+                <div className="text-center text-red-500 font-semibold">
+                    User reviews ({revLen})
+                </div>
                 
-                    :<div></div>
-                }
+                <RenderAddYourRating></RenderAddYourRating>
+                <div>
+                    {reviews.results && reviews.results.length ? 
+                    reviews.results.map((review,index)=>(
+                        <div className="p-4">
+                        <ReviewCard review={review}></ReviewCard>
+                        </div>
+                    ))
+                    
+                        :<div></div>
+                    }
+                </div>
+
+            </div>
+
+            <div className="md:w-3/12">
+                
+            </div>
+            
+        </div>
+    )
+}
+
+
+function RenderAddYourRating(){
+    return(
+        <div className="p-4">
+            <div className="flex bg-gray-200 rounded-xl p-3" style={{width:'350px'}}>
+                <div className="flex">
+                    <div className="pr-10">
+                        <div className="font-semibold">
+                            Add your rating & review
+                        </div>
+                        <div className="text-gray-700 text-xs">
+                            Your ratings matter
+                        </div>
+                    </div>
+                    <div className="font-semibold text-red-500 border-solid border-2 border-red-300 rounded px-2 py-2">
+                        Rate now
+                    </div>
+                </div>
             </div>
         </div>
     )
@@ -81,14 +121,16 @@ function ReviewCard({review}){
             <div className="flex justify-between pt-2 pb-4">
                 <div className="flex">
                     <img src={review.avatar_path}></img>
-                    <div>{review.author}</div>
+                    <div className="text-lg font-semibold">{review.author}</div>
                 </div>
                 <div className="flex">
-                <div className="pt-0.5 px-2 pb-4"><FaStar/></div>
+                <div className="pt-0.5 px-2 pb-4">
+                    <FaStar style={{color:'red'}}/>
+                </div>
                     {review.author_details.rating}/10
                 </div>
             </div>
-            <div className="pb-4">
+            <div className="pb-4 text-gray-600">
             {review.content}
             </div>
             <div className="flex justify-between">

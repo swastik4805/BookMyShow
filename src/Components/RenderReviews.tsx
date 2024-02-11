@@ -37,7 +37,9 @@ function ReviewCard({review,id}){
                     <div>{review.author}</div>
                 </div>
                 <div className="flex">
-                <div className="pt-0.5 px-2 pb-4"><FaStar/></div>
+                <div className="pt-0.5 px-2 pb-4">
+                    <FaStar style={{color:'red'}}/>
+                </div>
                     {review.author_details.rating}/10
                 </div>
             </div>
