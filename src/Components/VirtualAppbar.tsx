@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { FaStar } from "react-icons/fa";
 
-export function VirtualAppbar({title,rating}){
+export function VirtualAppbar({title,rating}:{title:string,rating: string}){
     const[showAppbar, setShowAppbar]=useState(false);
     useEffect(()=>{
         const handleScroll=()=>{
@@ -16,10 +16,10 @@ export function VirtualAppbar({title,rating}){
         }
     },[]);
 
-    return(<div className={`fixed top-0 w-full bg-gray-200 px-6
+    return(<div className={`fixed top-0 w-full bg-gray-200 px-6 py-2 shadow-xl
     transition-opacity ${showAppbar?"opacity-200":"opacity-0 -top-full"}`}>
         
-        <div className="flex justify-between shadow-xl">
+        <div className="flex justify-between">
             <div>
                 <div className="text-xl font-bold">
                     {title}
@@ -30,7 +30,10 @@ export function VirtualAppbar({title,rating}){
                 </div>
             </div>
             <div className="p-2">
-                <div className="bg-red-500 rounded-md px-8 py-3 text-sm font-semibold text-white">
+                <div className="bg-red-500 rounded-md px-8 py-3 text-sm font-semibold text-white cursor-pointer"
+                onClick={()=>{
+                    alert("Well this is just a dummy! We will surely notify you once we are able to do so....")
+                }}>
                     Book tickets
                 </div>
             </div>

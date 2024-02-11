@@ -2,7 +2,13 @@ import { Link } from "react-router-dom";
 import backupImg from '../assets/backup.png';
 import ScrollToTopWrapper from "./ScrollToTopWrapper";
 
-export const Card = ({ movie }) => {
+interface Movie{
+  title: string;
+  id: string;
+  overview: string;
+  poster_path: string;
+}
+export const Card = ({ movie }:{movie: Movie}) => {
   const { id, title, overview, poster_path } = movie;
     
   const image = poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : backupImg ;

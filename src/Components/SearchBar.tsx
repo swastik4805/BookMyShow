@@ -1,4 +1,4 @@
-export function SearchBar({label}){
+export function SearchBar(){
     return(
         <form>   
         <label className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
@@ -15,8 +15,7 @@ export function SearchBar({label}){
                 width: '350px', 
                 height: '40px',
             }}
-            className="ps-10 text-sm text-gray-900 rounded-lg bg-gray-100" 
-            placeholder={label} required/>
+            className="ps-10 text-sm text-gray-900 rounded-lg bg-gray-100"  required/>
         </div>
     </form>
     )

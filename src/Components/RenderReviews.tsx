@@ -6,7 +6,8 @@ export function RenderReviews({reviews,id}){
 
     return(
         
-        <div><div className="text-2xl font-bold pl-4">Top reviews</div>
+        <div className="cursor-pointer">
+            <div className="text-2xl font-bold pl-4">Top reviews</div>
         <div className="flex">
             
             {reviews.results && reviews.results.length ? 

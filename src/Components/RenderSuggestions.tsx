@@ -2,7 +2,7 @@ import { Card } from ".";
 import { useFetch } from "./hooks";
 import ScrollToTopWrapper from "./ScrollToTopWrapper"; // Import the ScrollToTopWrapper component
 
-export function RenderSuggestions({apiPath,title}){
+export function RenderSuggestions({apiPath}:{apiPath: string}){
     const { data: movies } = useFetch(apiPath);
 
     const moviewToRender=movies.slice(0,4);

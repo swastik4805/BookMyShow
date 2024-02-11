@@ -1,6 +1,5 @@
 
-import logo from "../assets/logo.png";
-import { Link, NavLink ,useNavigate } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
 import { DropDownList } from "./DropDownList";
 
 export const Header = () => {
@@ -45,7 +44,7 @@ export const Header = () => {
                     <input
                       type="text"
                       name="search"
-                      className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                      className="block w-fit p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
                       placeholder="Search for Movies, Events, Plays, etc"
                     />
                   </form>

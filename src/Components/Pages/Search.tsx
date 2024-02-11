@@ -5,7 +5,7 @@ import { useFetch } from "../hooks";
 import { Card } from "../Cards";
 
 
-export const Search = ({apiPath}) => {
+export const Search = ({apiPath}:{apiPath: string}) => {
   const [searchParams] = useSearchParams( ) ;
   const queryTerm = searchParams.get("q"); ;
 
@@ -22,7 +22,7 @@ export const Search = ({apiPath}) => {
       </section>
       <section className="max-w-7xl mx-auto py-7">
         <div className="flex justify-center  flex-wrap">
-          {movies.map((movie, index) => (
+          {movies.map((movie) => (
             <Card key={movie.id} movie={movie} />
           ))}
         </div>

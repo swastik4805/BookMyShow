@@ -4,9 +4,47 @@ import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 
-export function DetailReview(){
-    const [reviews, setReviews]=useState({});
-    const [movie, setMovie] = useState({});
+
+interface Movie{
+    title: string
+}
+interface Review {
+    id: string;
+    author_details:AurhorDetailsArr[];
+    avatar_path: string;
+    author: string;
+    content:string;
+    updated_at: string
+    results:ResultsArr[];
+}
+interface ResultsArr{
+    avatar_path: string;
+    author_details: string
+}
+interface AurhorDetailsArr{
+    rating: string;
+    author: string;
+    author_details: string;
+    content: string;
+}
+
+
+
+export function DetailReview() {
+    const [reviews, setReviews] = useState<Review>({
+        id:"",
+        author_details:[],
+        avatar_path: "",
+        author: "",
+        content:"",
+        updated_at: "",
+        results:[]
+    });
+
+
+    const [movie, setMovie] = useState<Movie>({
+        title:""
+    });
     const params=useParams();
     const [revLen, setRevLen]=useState(0);
 
@@ -70,7 +108,7 @@ export function DetailReview(){
                 <div>
                     {reviews.results && reviews.results.length ? 
                     reviews.results.map((review,index)=>(
-                        <div className="p-4">
+                        <div className="p-4" key={index}>
                         <ReviewCard key={index} review={review}></ReviewCard>
                         </div>
                     ))
@@ -112,9 +150,18 @@ function RenderAddYourRating(){
     )
 }
 
+interface ReviewCardType{
+    avatar_path:string;
+    author: string;
+    author_details: AuthorDetailsType;
+    content:string;
+    updated_at: string;
+}
+interface AuthorDetailsType{
+    rating: string;
+}
 
-
-function ReviewCard({review}){
+function ReviewCard({review}:{review:ReviewCardType}){
     // console.log(review);
     return(
         <div className="rounded p-4 border-solid border-2 border-gray-400">

@@ -9,11 +9,68 @@ import { RenderReviews } from "../RenderReviews";
 import { VirtualAppbar } from "../VirtualAppbar";
 
 
+interface Movie{
+  poster_path: string;
+  vote_average: string;
+  title: string;
+  overview: string;
+  original_language: string;
+  status: string;
+}
+
+interface Credit{
+  id: string;
+}
+
+interface DetailsObj{
+  vote_average: string;
+  runtime: string;
+  genres: Genres[];
+  release_date: string;
+}
+interface Genres{
+  name: string
+}
+interface Credit{
+  cast:CastArr[];
+  crew: CrewArr[];
+}
+interface CastArr{
+  id: string;
+  name: string;
+  character: string
+}
+interface CrewArr{
+  id: string;
+  name: string;
+  known_for_department: string;
+}
+
 export const MovieDetail = () => {
+
   const params = useParams();
-  const [movie, setMovie] = useState({});
-  const [credit, setCredit]=useState({});
-  const [details, setDetails]=useState({});
+
+  const [movie, setMovie] = useState<Movie>({
+    poster_path:"",
+    vote_average: "",
+    title: "",
+    overview:"",
+    original_language:"",
+    status:"",
+  });
+
+
+  const [credit, setCredit]=useState({
+    id:"",
+    cast:[],
+    crew: [],
+  });
+  const [details, setDetails]=useState({
+    vote_average: "",
+    runtime: "",
+    genres: [],
+    release_date: "",
+  });
   const [reviews, setReviews]=useState({});
   
 
@@ -101,7 +158,7 @@ export const MovieDetail = () => {
       </div>
       <div>
         <div className="w-9/12">
-          <Cast credits={credit} id={params.id}></Cast>
+          <Cast credits={credit}></Cast>
           <RenderSuggestions apiPath="movie/popular"  title="Popular"></RenderSuggestions>
           <RenderReviews reviews={reviews} id={params.id}></RenderReviews>
         </div>
@@ -117,7 +174,7 @@ export const MovieDetail = () => {
 
 
 
-function DisplayActors({image,name, characterName}){
+function DisplayActors({image,name, characterName}:{image: string, name: string, characterName: string}){
   return(
     <div>
       <div>
@@ -134,7 +191,7 @@ function DisplayActors({image,name, characterName}){
   )
 }
 
-function DisplayCrew({image,name, known_for_department}){
+function DisplayCrew({image,name, known_for_department}:{image: string,name: string, known_for_department: string}){
   return(
     <>
       <div>
@@ -150,7 +207,8 @@ function DisplayCrew({image,name, known_for_department}){
   )
 }
 
-function Cast({ credits }) {
+
+function Cast({ credits }:{credits:Credit}) {
   // console.log(credits);
   return (
     <div>
@@ -175,7 +233,7 @@ function Cast({ credits }) {
   )
 }
 
-function AboutTheMovie({overview}){
+function AboutTheMovie({overview}:{overview: string}){
   return(
     <div className="p-6">
       <div className="font-bold text-xl pb-3">
@@ -188,7 +246,13 @@ function AboutTheMovie({overview}){
   )
 }
 
-function Background({image,prop,details,original_language, status}){
+interface Prop{
+  title: string;
+}
+
+function Background({image,prop,details,original_language, status}:{
+  image:string,details:DetailsObj,original_language:string,status: string,prop: Prop,
+}){
   return(
     <div className="bg-blue-300 w-screen" style={{height:'490px',backgroundImage:`url(${image})`,backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
       <div className="bg-gradient-to-r from-black" style={{height:'490px'}}>
@@ -219,7 +283,10 @@ function Background({image,prop,details,original_language, status}){
                   Are you interested in watching this movie?
                 </div>
               </div>
-              <div className="text-sm bg-white rounded pt-1 px-2" style={{height:'30px'}}>
+              <div className="text-sm bg-white rounded pt-1 px-2 cursor-pointer" style={{height:'30px'}}
+              onClick={()=>{
+                alert("Well.... thats great")
+              }}>
                 I am interested
               </div>
             </div>
@@ -242,7 +309,7 @@ function Background({image,prop,details,original_language, status}){
                 {details.runtime} mins
               </div>
               <div className="flex text-white pr-3">
-                {details.genres && details.genres.length? details.genres.map((x,index)=><div>{x.name},</div>):""}
+                {details.genres && details.genres.length? details.genres.map((x,index)=><div key={index}>{x.name},</div>):""}
               </div>
               <div className="text-white font-bold">
                 {details.release_date}
@@ -254,7 +321,10 @@ function Background({image,prop,details,original_language, status}){
 
 
 
-            <div className="text-white font-semibold bg-red-400 rounded px-6 py-2" style={{width:'140px'}}>
+            <div className="text-white font-semibold bg-red-400 rounded px-6 py-2 cursor-pointer" style={{width:'140px'}}
+            onClick={()=>{
+              alert("We will notify you once we are able to do so.")
+            }}>
               Book Tickets
             </div>
           </div>
