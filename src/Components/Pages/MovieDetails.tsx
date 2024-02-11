@@ -6,6 +6,7 @@ import { AiFillLike } from "react-icons/ai";
 import actor from "../../assets/actor.png"
 import { RenderSuggestions } from "../RenderSuggestions";
 import { RenderReviews } from "../RenderReviews";
+import { VirtualAppbar } from "../VirtualAppbar";
 
 
 export const MovieDetail = () => {
@@ -92,7 +93,9 @@ export const MovieDetail = () => {
   
   return (
     <div>
+      <VirtualAppbar title={movie.title} rating={movie.vote_average}></VirtualAppbar>
       <div>
+        
         <Background image={image} prop={movie} details={details} original_language={movie.original_language} status={movie.status}></Background>
         <AboutTheMovie overview={movie.overview}></AboutTheMovie>
       </div>
@@ -102,6 +105,7 @@ export const MovieDetail = () => {
           <RenderSuggestions apiPath="movie/popular"  title="Popular"></RenderSuggestions>
           <RenderReviews reviews={reviews} id={params.id}></RenderReviews>
         </div>
+
         <div className="w-3/12">
 
         </div>

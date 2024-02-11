@@ -71,7 +71,7 @@ export function DetailReview(){
                     {reviews.results && reviews.results.length ? 
                     reviews.results.map((review,index)=>(
                         <div className="p-4">
-                        <ReviewCard review={review}></ReviewCard>
+                        <ReviewCard key={index} review={review}></ReviewCard>
                         </div>
                     ))
                     

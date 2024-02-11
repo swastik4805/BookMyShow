@@ -24,7 +24,7 @@ export function RenderReviews({reviews,id}){
 }
 
 function ReviewCard({review,id}){
-    console.log(review);
+    // console.log(review);
     const navigate=useNavigate();
     return(
         <div className="rounded p-4 border-solid border-2 border-gray-400"
