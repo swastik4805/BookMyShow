@@ -5,6 +5,7 @@ import axios from "axios";
 import { AiFillLike } from "react-icons/ai";
 import actor from "../../assets/actor.png"
 import { RenderSuggestions } from "../RenderSuggestions";
+import { RenderReviews } from "../RenderReviews";
 
 
 export const MovieDetail = () => {
@@ -12,6 +13,7 @@ export const MovieDetail = () => {
   const [movie, setMovie] = useState({});
   const [credit, setCredit]=useState({});
   const [details, setDetails]=useState({});
+  const [reviews, setReviews]=useState({});
   
 
 
@@ -30,55 +32,84 @@ export const MovieDetail = () => {
     }
     
 
-  const options1 = {
-    method: 'GET',
-    url: `https://api.themoviedb.org/3/movie/${params.id}/credits?`,
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZGU2ZTU2NDI5NzU4MTk3N2UwMDUwMTUxOTVlOTcxYiIsInN1YiI6IjY1YzRkM2FkMDdmYWEyMDE3ZGMyY2JmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tKxQfJa9VdoZO85I1l6udaTNAnB3Knx84j3VZQfqA2U'
-    }
-  };
-  axios
-    .request(options1)
-    .then(function (response) {
-      setCredit(response.data);
-      // console.log(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
+    const revi= {
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/movie/${params.id}/reviews?language=en-US&page=1`,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZGU2ZTU2NDI5NzU4MTk3N2UwMDUwMTUxOTVlOTcxYiIsInN1YiI6IjY1YzRkM2FkMDdmYWEyMDE3ZGMyY2JmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tKxQfJa9VdoZO85I1l6udaTNAnB3Knx84j3VZQfqA2U'
+      }
+    };
+    axios
+      .request(revi)
+      .then(function (response) {
+        setReviews(response.data);
+        // console.log(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
 
 
-const options = {
-  method: 'GET',
-  url: `https://api.themoviedb.org/3/movie/${params.id}?language=en-US`,
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZGU2ZTU2NDI5NzU4MTk3N2UwMDUwMTUxOTVlOTcxYiIsInN1YiI6IjY1YzRkM2FkMDdmYWEyMDE3ZGMyY2JmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tKxQfJa9VdoZO85I1l6udaTNAnB3Knx84j3VZQfqA2U'
-  }
-};
-axios.request(options)
-  .then(function (response) {
-    setDetails(response.data);
-  }).catch(function (error) {
-    console.error(error);
-  });
+
+
+    const options1 = {
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/movie/${params.id}/credits?`,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZGU2ZTU2NDI5NzU4MTk3N2UwMDUwMTUxOTVlOTcxYiIsInN1YiI6IjY1YzRkM2FkMDdmYWEyMDE3ZGMyY2JmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tKxQfJa9VdoZO85I1l6udaTNAnB3Knx84j3VZQfqA2U'
+      }
+    };
+    axios
+      .request(options1)
+      .then(function (response) {
+        setCredit(response.data);
+        // console.log(response.data);
+      }).catch(function (error) {
+        console.error(error);
+      });
+
+
+    const options = {
+      method: 'GET',
+      url: `https://api.themoviedb.org/3/movie/${params.id}?language=en-US`,
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZGU2ZTU2NDI5NzU4MTk3N2UwMDUwMTUxOTVlOTcxYiIsInN1YiI6IjY1YzRkM2FkMDdmYWEyMDE3ZGMyY2JmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tKxQfJa9VdoZO85I1l6udaTNAnB3Knx84j3VZQfqA2U'
+      }
+    };
+    axios.request(options)
+      .then(function (response) {
+        setDetails(response.data);
+      }).catch(function (error) {
+        console.error(error);
+      });
 
     fetchMovie();
   }, [params.id]);
 
   
   return (
-    <main>
+    <div>
       <div>
         <Background image={image} prop={movie} details={details} original_language={movie.original_language} status={movie.status}></Background>
         <AboutTheMovie overview={movie.overview}></AboutTheMovie>
-        <Cast credits={credit} id={params.id}></Cast>
-        <RenderSuggestions apiPath="movie/popular"  title="Popular"></RenderSuggestions>
-
       </div>
-    </main>
+      <div>
+        <div className="w-9/12">
+          <Cast credits={credit} id={params.id}></Cast>
+          <RenderSuggestions apiPath="movie/popular"  title="Popular"></RenderSuggestions>
+          <RenderReviews reviews={reviews} id={params.id}></RenderReviews>
+        </div>
+        <div className="w-3/12">
+
+        </div>
+      </div>
+    </div>
   );
 };
+
 
 
 
@@ -115,7 +146,6 @@ function DisplayCrew({image,name, known_for_department}){
   )
 }
 
-
 function Cast({ credits }) {
   // console.log(credits);
   return (
@@ -141,7 +171,6 @@ function Cast({ credits }) {
   )
 }
 
-
 function AboutTheMovie({overview}){
   return(
     <div className="p-6">
@@ -154,8 +183,6 @@ function AboutTheMovie({overview}){
     </div>
   )
 }
-
-
 
 function Background({image,prop,details,original_language, status}){
   return(

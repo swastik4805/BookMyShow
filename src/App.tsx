@@ -7,12 +7,14 @@ import ScrollToTopWrapper from './Components/ScrollToTopWrapper';
 
 function App() {
   return (
-    <div className ="app ">
-    <Header/>
-    <BelowHeader></BelowHeader>
-     <AllRoutes/>
-     <Footer/>
+    <div>
+      <Header/>
+      <BelowHeader></BelowHeader>
+      
+        <AllRoutes/>
+        <Footer/>
     </div>
+     
   );
 }
 

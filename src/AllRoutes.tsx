@@ -3,6 +3,7 @@ import { MovieDetail } from './Components/Pages/MovieDetails';
 import { Search } from './Components/Pages/Search';
 import { PageNotFound } from './Components/Pages/PageNotFound';
 import { MovieList } from './Components/Pages/MovieList';
+import { DetailReview } from './Components/Pages/DetailReview';
 
 
 export const AllRoutes = () => {
@@ -17,7 +18,7 @@ export const AllRoutes = () => {
         <Route path="/movies/upcoming" element={<MovieList apiPath="movie/upcoming" title="Upcoming"/>} />
         <Route path="/search" element={<Search  apiPath="search/movie"/>} />
         <Route path="*" element={<PageNotFound  />} />
-        
+        <Route path="/movie/:id/reviews" element={<DetailReview></DetailReview>}></Route>
       </Routes>
     </div>
   );

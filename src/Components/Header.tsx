@@ -2,10 +2,8 @@
 import logo from "../assets/logo.png";
 import { Link, NavLink ,useNavigate } from "react-router-dom";
 import { DropDownList } from "./DropDownList";
+
 export const Header = () => {
-
-
-  
     const navigate = useNavigate()
 
     const handleSubmit =(e) =>{
