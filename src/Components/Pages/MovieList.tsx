@@ -3,11 +3,11 @@ import { useFetch } from "../hooks";
 import { Card } from "../Cards";
 
 
-export const MovieList = ({ apiPath  , title }:{apiPath: string, title: string}) => {
+export const MovieList = ({ apiPath }:{apiPath: string, title: string}) => {
   const { data: movies } = useFetch(apiPath);
 
 
-  console.log(title);
+  // console.log(title);
   return (
     <main>
       <div className="">

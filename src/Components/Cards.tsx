@@ -14,6 +14,7 @@ export const Card = ({ movie }:{movie: Movie}) => {
   const image = poster_path ? `https://image.tmdb.org/t/p/w500/${poster_path}` : backupImg ;
 
   return (
+    
       <ScrollToTopWrapper> {/* Wrap with ScrollToTopWrapper */}
         <div className="max-w-sm bg-white rounded-xl m-2">
           <Link to={`/movie/${id}`}>

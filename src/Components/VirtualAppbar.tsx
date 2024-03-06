@@ -3,12 +3,17 @@ import { FaStar } from "react-icons/fa";
 
 export function VirtualAppbar({title,rating}:{title:string,rating: string}){
     const[showAppbar, setShowAppbar]=useState(false);
+
     useEffect(()=>{
         const handleScroll=()=>{
             if(window.scrollY>200){
                 setShowAppbar(true);
+                document.body.style.paddingTop = "40px";
             }
-            else setShowAppbar(false);
+            else{
+                setShowAppbar(false);
+                document.body.style.paddingTop = "0";
+            }
         }
         window.addEventListener("scroll",handleScroll);
         return()=>{
@@ -16,8 +21,10 @@ export function VirtualAppbar({title,rating}:{title:string,rating: string}){
         }
     },[]);
 
-    return(<div className={`fixed top-0 w-full bg-gray-200 px-6 py-2 shadow-xl
-    transition-opacity ${showAppbar?"opacity-200":"opacity-0 -top-full"}`}>
+    return(
+        <div className={`fixed top-0 w-full bg-gray-200 px-6 py-2 shadow-xl
+        transition-opacity ${showAppbar?"opacity-200":"opacity-0 -top-full"}`}
+        style={{ zIndex: showAppbar ? 10 : -1 }}>
         
         <div className="flex justify-between">
             <div>
