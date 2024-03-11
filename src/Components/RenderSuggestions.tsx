@@ -12,7 +12,7 @@ export function RenderSuggestions({apiPath}:{apiPath: string}){
             <div>
                 <div className="text-2xl font-bold pl-4">You might also like</div>
                 <div className="">
-                    <div className="grid grid-cols-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4">
                         {moviewToRender.map((movie) => (
                             <Card key={movie.id} movie={movie} />
                         ))}

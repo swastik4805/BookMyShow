@@ -43,7 +43,7 @@ export const Header = () => {
                 />
               </div> */}
 
-              <div className={`relative hidden  md:block`}>
+              <div className={`relative`}>
                   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
                       className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -65,7 +65,7 @@ export const Header = () => {
                     <input
                       type="text"
                       name="search"
-                      className="block w-fit p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                      className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
                       placeholder="Search for Movies, Events, Plays, etc"
                     />
                   </form>
@@ -74,7 +74,7 @@ export const Header = () => {
             
             <div className="flex">
               <DropDownList></DropDownList>
-              <div className="bg-red-400 rounded-lg px-3">Sign in</div>
+              <div className=" bg-red-400 rounded-lg px-3 hidden sm:block">Sign in</div>
             </div>
             
           </div>

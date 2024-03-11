@@ -11,7 +11,7 @@ export const MovieList = ({ apiPath }:{apiPath: string, title: string}) => {
   return (
     <main>
       <div className="">
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-2 md:grid-cols-4">
           {movies.map((movie) => (
             <Card key={movie.id} movie={movie} />
           ))}

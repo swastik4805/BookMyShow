@@ -7,7 +7,7 @@ import { Card } from "../Cards";
 
 export const Search = ({apiPath}:{apiPath: string}) => {
   const [searchParams] = useSearchParams( ) ;
-  const queryTerm = searchParams.get("q"); ;
+  const queryTerm = searchParams.get("q");
 
   const { data: movies } = useFetch(apiPath, queryTerm);
   /* For page title custom hook  */

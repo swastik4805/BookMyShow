@@ -9,8 +9,7 @@ export function BelowHeader(){
                 <div className="px-3 text-sm"><NavLink to="/movies/top">Top</NavLink></div>
                 <div className="px-3 text-sm"><NavLink to="/movies/upcoming">Upcoming</NavLink></div>
             </div>
-
-            <div className="flex justify-between">
+            <div className="hidden md:flex justify-between">
                 <div className="px-3 text-sm">ListYourShow</div>
                 <div className="px-3 text-sm">Corporates</div>
                 <div className="px-3 text-sm">Offers</div>
