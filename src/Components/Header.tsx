@@ -72,7 +72,7 @@ export const Header = () => {
               </div>
             </div>
             
-            <div className="flex">
+            <div className="flex hidden sm:block">
               <DropDownList></DropDownList>
               <div className=" bg-red-400 rounded-lg px-3 hidden sm:block">Sign in</div>
             </div>
