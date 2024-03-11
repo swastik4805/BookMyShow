@@ -71,10 +71,11 @@ export const Header = () => {
                   </form>
               </div>
             </div>
-            
-            <div className="flex hidden sm:block">
-              <DropDownList></DropDownList>
-              <div className=" bg-red-400 rounded-lg px-3 hidden sm:block">Sign in</div>
+            <div className=" hidden sm:block">
+              <div className="flex">
+                <DropDownList></DropDownList>
+                <div className=" bg-red-400 rounded-lg px-3">Sign in</div>
+              </div>
             </div>
             
           </div>
